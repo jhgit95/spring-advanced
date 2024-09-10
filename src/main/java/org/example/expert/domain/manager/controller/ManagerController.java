@@ -40,10 +40,11 @@ public class ManagerController {
     public void deleteManager(
             @RequestHeader("Authorization") String bearerToken,
             @PathVariable long todoId,
-            @PathVariable long managerId
+            @PathVariable long managerId,
+            @Auth AuthUser authUser
     ) {
-        Claims claims = jwtUtil.extractClaims(bearerToken.substring(7));
-        long userId = Long.parseLong(claims.getSubject());
+
+        long userId = authUser.getId();
         managerService.deleteManager(userId, todoId, managerId);
     }
 }
