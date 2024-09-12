@@ -45,6 +45,7 @@ class CommentServiceTest {
         long todoId = 1;
         CommentSaveRequest request = new CommentSaveRequest("contents");
         AuthUser authUser = new AuthUser(1L, "email", UserRole.USER);
+        given(managerRepository.existsManagerByUser_IdAndTodo_Id(any(),any())).willReturn(true);
 
         given(todoRepository.findById(anyLong())).willReturn(Optional.empty());
 
@@ -69,6 +70,7 @@ class CommentServiceTest {
 
         given(todoRepository.findById(anyLong())).willReturn(Optional.of(todo));
         given(commentRepository.save(any())).willReturn(comment);
+        given(managerRepository.existsManagerByUser_IdAndTodo_Id(any(),any())).willReturn(true);
 
         // when
         CommentSaveResponse result = commentService.saveComment(authUser, todoId, request);
