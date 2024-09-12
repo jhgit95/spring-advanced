@@ -8,6 +8,7 @@ public enum UserRole {
     ADMIN, USER;
 
     public static UserRole of(String role) {
+        System.out.println("Role being checked: " + role);
         return Arrays.stream(UserRole.values())
                 .filter(r -> r.name().equalsIgnoreCase(role))
                 .findFirst()
