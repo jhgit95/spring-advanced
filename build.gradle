@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.3'
     id 'io.spring.dependency-management' version '1.1.6'
+//    id 'jacoco'
 }
 
 group = 'org.example'
@@ -19,9 +20,25 @@ configurations {
     }
 }
 
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 repositories {
     mavenCentral()
 }
+//jacoco {
+//    toolVersion = "0.8.9" // JaCoCo 버전 명시
+//}
+//
+//jacocoTestReport {
+//    reports {
+//        xml.required.set(true)  // XML 리포트 생성 활성화
+//        csv.required.set(false) // CSV 리포트 비활성화
+//        html.required.set(true) // HTML 리포트 생성 활성화
+//    }
+//}
 
 dependencies {
 
